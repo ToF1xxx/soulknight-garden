@@ -1,0 +1,175 @@
+/* ==========================================================================
+   1. ЗАДНИЙ ФОН С ПАРАЛЛАКСОМ И БЛЮРОМ (14.PNG)
+   ========================================================================== */
+body {
+    background-color: #0b0b0f;
+    color: #d1d1e0;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(11, 11, 15, 0.72), rgba(11, 11, 15, 0.72)), url('14.png');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    background-attachment: scroll;
+    background-position: center var(--scroll-y, 0px);
+    will-change: background-position;
+    transform: translate3d(0, 0, 0);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.wiki-game-container {
+    max-width: 1200px;
+    width: 100%;
+    background-color: #1a1a26;
+    border: 8px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ==========================================================================
+   2. ВЕРХНИЙ ЛАЯУТ (Растянутые шрифты и авто-высота)
+   ========================================================================== */
+.wiki-top-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1.9fr;
+    gap: 25px;
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.wiki-sidebar-menu {
+    background-color: #ffcc00;
+    border: 6px solid #101018;
+    border-radius: 4px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 0px #000;
+    position: relative;
+}
+
+.menu-title {
+    color: #101018;
+    font-size: 32px;
+    border-bottom: 4px solid #101018;
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.menu-link {
+    color: #101018 !important;
+    text-decoration: none;
+    font-size: 22px;
+    line-height: 1.4;
+    transition: transform 0.15s, padding-left 0.15s;
+    display: block;
+    flex-grow: 1; /* Полностью заполняет жёлтый квадрат */
+    transform-origin: left center;
+}
+.menu-link:hover {
+    transform: scale(1.06);
+    padding-left: 5px;
+}
+
+/* КРУПНЫЙ ЗНАЧОК С ПРЫЖКОМ */
+.menu-corner-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.menu-corner-icon.jump-active {
+    animation: pixelJump 0.4s ease-out;
+    filter: drop-shadow(0 0 10px #ffffff) brightness(1.5);
+}
+
+@keyframes pixelJump {
+    0%, 100% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-16px) scale(1.1); }
+    70% { transform: translateY(2px) scale(0.95); }
+}
+
+.wiki-garden-photo-wrapper {
+    background-color: #22b14c;
+    border: 6px solid #101018;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 0px #000;
+}
+
+.wiki-garden-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================================================
+   3. НИЖНИЙ ЛАЯУТ (Золотые заголовки со сквозными полосками под ними)
+   ========================================================================== */
+.wiki-content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wiki-article-block {
+    background-color: #252535;
+    border: 4px solid #101018;
+    border-radius: 4px;
+    padding: 25px;
+    box-shadow: 0 10px 0px #000;
+}
+
+.wiki-pixel-header {
+    background-color: transparent;
+    color: #ffb700;
+    font-size: 22px;
+    padding: 0;
+    margin: 0 0 10px 0;
+    display: block;
+    text-transform: uppercase;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+/* Длинная жёлтая разделительная полоса с чёрной пиксельной обводкой */
+.wiki-pixel-header::after {
+    content: "";
+    display: block;
+    width: calc(100% - 10px);
+    height: 6px;
+    background-color: #ffb700;
+    border: 2px solid #101018;
+    margin-top: 12px;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.wiki-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #d1d1e0;
+    margin: 15px 0 0 0;
+    text-shadow: 1px 1px 0px #000;
+}
+
+@media (max-width: 768px) {
+    .wiki-top-layout { grid-template-columns: 1fr; }
+    body { padding: 20px 10px; }
+    .wiki-game-container { padding: 15px; }
+    .wiki-garden-photo-wrapper { height: 220px; }
+}
